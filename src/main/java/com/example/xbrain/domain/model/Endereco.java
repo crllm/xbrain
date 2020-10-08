@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,12 +26,25 @@ public class Endereco {
 
     private String cep;
 
-    @OneToMany(mappedBy = "enderecos", fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "cliente_fk")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "enderecos", fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cidade_fk")
     private Cidade cidade;
 
     public Endereco() {
+    }
+
+    public static interface EnderecoRepository {
+
+        Endereco save(Endereco endereco);
+
+        List<Endereco> saveAll(List<Endereco> enderecos);
+
+        Endereco findById(Long id);
+
+        List<Endereco> findAll();
     }
 }

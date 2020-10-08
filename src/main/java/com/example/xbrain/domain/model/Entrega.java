@@ -8,23 +8,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "PRODUTO")
-public class Produto {
+@Table(name = "ENTREGA")
+public class Entrega {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-
     @ManyToOne
-    @JoinColumn(name = "categoria_fk")
-    private Categoria categoria;
+    @JoinColumn(name = "endereco_fk")
+    private Endereco endereco;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_fk")
-    private Pedido pedido;
-
-    public Produto() {
+    public Entrega() {
     }
 }

@@ -1,5 +1,6 @@
 package com.example.xbrain.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,8 @@ public class Estado {
 
     private String nome;
 
-    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy="estado")
     private final Set<Cidade> cidades;
 
     public Estado() {
